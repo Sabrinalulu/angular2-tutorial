@@ -1,0 +1,65 @@
+<!-- {{hero}} -->
+<!-- <h2>{{hero.name}} Details</h2> -->
+
+<!-- <h2>{{hero.name | uppercase}} Details</h2> -->
+<!-- <div><span>id: </span>{{hero.id}}</div> -->
+<!-- <div><span>name: </span>{{hero.name}}</div> -->
+
+<!-- <div> -->
+    
+    <!-- <label>Name:  -->
+      <!-- ngModel: two ways binding syntax -->
+      <!-- <input [(ngModel)]="hero.name" placeholder="name"/> -->
+    <!-- </label> -->
+    
+<!-- @ the following method was applied before using router to show details -->
+<!-- </div> -->
+<!-- The component should only display the selected hero details if the selectedHero exists. -->
+<!-- <div *ngIf='selectedHero'>
+    <h2>{{selectedHero.name | uppercase}} Details</h2>
+    <div><span>id: </span>{{selectedHero.id}}</div>
+    <div>
+    <label>Name:
+        <input [(ngModel)]="selectedHero.name" placeholder="name"/>
+    </label>
+    </div>
+</div> -->
+
+<!-- <h2>My Heroes</h2>
+<ul class="heroes"> -->
+    <!-- ngFor: iterate through the list of heroes -->
+    <!-- <li> is the host element. -->
+    <!-- heroes holds the mock heroes list from the HeroesComponent class, the mock heroes list. -->
+    <!-- hero holds the current hero object for each iteration through the list. -->
+    <!-- <li *ngFor='let hero of heroes' (click)='onSelect(hero)' [class.selected]="hero === selectedHero">
+        <span class='badge'>{{hero.id}}: </span>{{hero.name}}
+    </li>
+</ul> -->
+<!-- @ -->
+
+<h2>My Heroes</h2>
+<ul class="heroes">
+    <li *ngFor="let hero of heroes">
+      <a routerLink="/detail/{{hero.id}}">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+      </a>
+      <button class="delete" title="delete hero" (click)="delete(hero)">x</button>
+    </li>
+</ul>
+
+<div>
+  <label>Hero name:
+    <input #heroName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(heroName.value); heroName.value=''">
+    add
+  </button>
+</div>
+
+<!-- Now the HeroDetailComponent is presenting those details instead of the HeroesComponent. -->
+<!-- simplified the HeroesComponent by reducing its responsibilities. -->
+<!-- evolve the HeroDetailComponent into a rich hero editor without touching the parent HeroesComponent. -->
+<!-- evolve the HeroesComponent without touching the hero detail view. -->
+<!-- re-use the HeroDetailComponent in the template of some future component. -->
+<!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
